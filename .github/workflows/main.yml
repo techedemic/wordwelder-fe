@@ -34,4 +34,4 @@ jobs:
           az webapp config container set --name ${{ secrets.FRONTEND_APP_NAME }} --resource-group wordwelder --docker-custom-image-name ${{ secrets.ACR_REGISTRY }}/wordwelder-fe:latest --docker-registry-server-url https://${{ secrets.ACR_REGISTRY }}
       - name: Apply env variables
         run: |
-        az webapp config appsettings set --name ${{ secrets.FRONTEND_APP_NAME }} --resource-group wordwelder --settings REACT_APP_API_HOST=${{ secrets.BE_APP_ADDRESS }}
+          az webapp config appsettings set --name ${{ secrets.FRONTEND_APP_NAME }} --resource-group wordwelder --settings REACT_APP_API_HOST=${{ secrets.BE_APP_ADDRESS }}

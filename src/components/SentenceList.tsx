@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -13,7 +14,6 @@ const SentenceList = (props: Props) => {
   const [sentences, setSentences] = useState<Sentence[]>([]);
 
   useEffect(() => {
-    console.log("fetching sentences");
     fetch(`${process.env.REACT_APP_API_HOST}/sentences`)
       .then((response) => {
         console.log(response);
@@ -26,11 +26,32 @@ const SentenceList = (props: Props) => {
   }, []);
 
   return (
-    <div>
-      <h2>List of Sentences</h2>
-      {sentences.map((sentence) => (
-        <p key={sentence.id}>{sentence.words.join(" ")}</p>
-      ))}
+    <div className="flex flex-col items-center">
+      <h2 className="text-2xl font-bold mb-4">Previous Sentences</h2>
+      {sentences.length > 0 ? (
+        sentences.map((sentence) => (
+          <div
+            key={sentence.id}
+            className="p-4 m-2 bg-white rounded shadow-md w-full md:w-1/2"
+          >
+            <p>{sentence.words.join(" ")}</p>
+            <p className="text-right text-gray-500">
+              {new Intl.DateTimeFormat("en-GB", {
+                year: "numeric",
+                month: "long",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+              }).format(new Date(sentence.createdAt))}
+            </p>
+          </div>
+        ))
+      ) : (
+        <p>
+          No sentences saved (yet). Click <Link to="/create">here</Link> to
+          create your first sentence.
+        </p>
+      )}
     </div>
   );
 };

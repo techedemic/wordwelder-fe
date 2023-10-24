@@ -1,5 +1,7 @@
 import React from "react";
 import SentenceList from "./components/SentenceList";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CreateSentence from "./components/CreateSentence";
 
 function App() {
   return (
@@ -9,7 +11,12 @@ function App() {
       </header>
 
       <main className="flex-grow p-4">
-        <SentenceList />
+        <Router>
+          <Routes>
+            <Route path="/" element={<SentenceList />} />
+            <Route path="/create" element={<CreateSentence />} />
+          </Routes>
+        </Router>
       </main>
 
       {/* Footer */}

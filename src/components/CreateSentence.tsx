@@ -18,13 +18,6 @@ type Word = {
     | "exclamation";
 };
 
-type Sentence = {
-  id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  words: Word[];
-};
-
 const CreateSentence = (props: Props) => {
   const [words, setWords] = useState<Word[]>([]);
   const [selectedWords, setSelectedWords] = useState<{ [key: string]: number }>(
@@ -76,7 +69,7 @@ const CreateSentence = (props: Props) => {
       body: JSON.stringify(sentence),
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(() => {
         setLoading(false);
         navigate("/");
       })

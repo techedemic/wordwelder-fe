@@ -4,6 +4,8 @@ FROM node:18-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
+# Install env-cmd globally
+RUN npm install -g env-cmd
 COPY . .
 RUN npm run build
 

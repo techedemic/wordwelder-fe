@@ -1,13 +1,21 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import SentenceList from "./components/SentenceList";
 
 function App() {
   return (
-    <div>
-      <SentenceList />
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <div className="flex flex-col min-h-screen text-gray-900">
+      <header className="p-4 bg-blue-500 text-white">
+        <h1 className="font-bold text-xl">WordWelder</h1>
+      </header>
+
+      <main className="flex-grow p-4">
+        <SentenceList />
+      </main>
+
+      {/* Footer */}
+      <footer className="p-4 bg-gray-200 text-center">
+        &copy; Hendri Schoeman 2023
+      </footer>
     </div>
   );
 }

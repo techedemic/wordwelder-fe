@@ -35,3 +35,6 @@ jobs:
       - name: Apply env variables
         run: |
           az webapp config appsettings set --name ${{ secrets.FRONTEND_APP_NAME }} --resource-group wordwelder --settings REACT_APP_API_HOST=${{ secrets.BE_APP_ADDRESS }}
+      - name: Restart Web App
+        run: |
+          az webapp restart --name ${{ secrets.FRONTEND_APP_NAME }} --resource-group wordwelder
